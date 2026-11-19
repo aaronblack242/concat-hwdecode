@@ -150,7 +150,7 @@ jobs:
     # in v0.2.7-rc.1. The steps that can hang have timeouts of their own,
     # at most 155 minutes between them on any one target, so a stuck step
     # is named by its own timeout; this is for a job stuck anywhere else.
-    timeout-minutes: 190
+    timeout-minutes: 240
     env:
       # What whisper's CPU kernels are built for on x86_64, by the matrix's
       # `ggml` row. ggml's own switches default to AVX2 with FMA, F16C and
@@ -472,7 +472,7 @@ jobs:
         # Intel build ran past sixty minutes in v0.2.7-rc.1, and the Apple
         # silicon one took 57 in v0.2.9 and timed out at sixty in v0.2.10
         # (run 42935189370) while every other bundle was built in 37.
-        timeout-minutes: ${{ matrix.platform == 'macos' && 100 || 60 }}
+        timeout-minutes: 150
         shell: bash
         working-directory: src
         run: |
